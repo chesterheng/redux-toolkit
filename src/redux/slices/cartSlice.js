@@ -24,9 +24,16 @@ const cartSlide = createSlice({
     clearCart: (state) => {
       state.cartItems = [];
     },
-    removeItem: (state, action) => {
-      const { payload: itemId } = action;
-      state.cartItems = state.cartItems.filter(({ id }) => id !== itemId);
+    removeItem: (state, { payload }) => {
+      state.cartItems = state.cartItems.filter(({ id }) => id !== payload);
+    },
+    increase: (state, { payload }) => {
+      const cartItem = state.cartItems.find(({ id }) => id === payload);
+      cartItem.amount++;
+    },
+    decrease: (state, { payload }) => {
+      const cartItem = state.cartItems.find(({ id }) => id === payload);
+      cartItem.amount--;
     },
   },
 });
@@ -34,6 +41,6 @@ const cartSlide = createSlice({
 const { reducer, actions } = cartSlide;
 
 // Action creators are generated for each case reducer function
-const { clearCart, removeItem } = actions;
+const { clearCart, removeItem, increase, decrease } = actions;
 
-export { reducer as cartReducer, clearCart, removeItem };
+export { reducer as cartReducer, clearCart, removeItem, increase, decrease };
