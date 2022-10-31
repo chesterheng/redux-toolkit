@@ -28,12 +28,22 @@ const cartSlide = createSlice({
       state.cartItems = state.cartItems.filter(({ id }) => id !== payload);
     },
     increase: (state, { payload }) => {
-      const cartItem = state.cartItems.find(({ id }) => id === payload);
+      const cartItem = state.cartItems.find(({ id }) => id === payload.id);
       cartItem.amount++;
     },
     decrease: (state, { payload }) => {
-      const cartItem = state.cartItems.find(({ id }) => id === payload);
+      const cartItem = state.cartItems.find(({ id }) => id === payload.id);
       cartItem.amount--;
+    },
+    calculateTotals: (state) => {
+      let amount = 0;
+      let total = 0;
+      state.cartItems.forEach((item) => {
+        amount += item.amount;
+        total += item.amount * item.price;
+      });
+      state.amount = amount;
+      state.total = total;
     },
   },
 });
@@ -41,6 +51,13 @@ const cartSlide = createSlice({
 const { reducer, actions } = cartSlide;
 
 // Action creators are generated for each case reducer function
-const { clearCart, removeItem, increase, decrease } = actions;
+const { clearCart, removeItem, increase, decrease, calculateTotals } = actions;
 
-export { reducer as cartReducer, clearCart, removeItem, increase, decrease };
+export {
+  reducer as cartReducer,
+  clearCart,
+  removeItem,
+  increase,
+  decrease,
+  calculateTotals,
+};
