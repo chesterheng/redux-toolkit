@@ -1,4 +1,4 @@
-export const CartIcon = () => {
+const CartIcon = () => {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
@@ -17,7 +17,7 @@ export const CartIcon = () => {
   );
 };
 
-export const ChevronDown = () => {
+const ChevronDown = () => {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
@@ -32,7 +32,7 @@ export const ChevronDown = () => {
   );
 };
 
-export const ChevronUp = () => {
+const ChevronUp = () => {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
@@ -46,3 +46,5 @@ export const ChevronUp = () => {
     </svg>
   );
 };
+
+export { CartIcon, ChevronDown, ChevronUp };
