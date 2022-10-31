@@ -24,13 +24,16 @@ const cartSlide = createSlice({
     clearCart: (state) => {
       state.cartItems = [];
     },
+    removeItem: (state, action) => {
+      const { payload: itemId } = action;
+      state.cartItems = state.cartItems.filter(({ id }) => id !== itemId);
+    },
   },
 });
 
-console.log(cartSlide);
 const { reducer, actions } = cartSlide;
 
 // Action creators are generated for each case reducer function
-const { clearCart } = actions;
+const { clearCart, removeItem } = actions;
 
-export { reducer as cartReducer, clearCart };
+export { reducer as cartReducer, clearCart, removeItem };
