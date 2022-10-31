@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { CartItem } from "./CartItem";
-import { calculateTotals } from "../redux/slices/cartSlice";
-import { openModal } from "../redux/slices/modalSlice";
+import { calculateTotals } from "../slices/cartSlice";
+import { openModal } from "../slices/modalSlice";
 
 const CartContainer = () => {
   const dispatch = useDispatch();

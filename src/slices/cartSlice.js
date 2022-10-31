@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { cartItems } from "../../data/cartItems";
+import { cartItems } from "../data/cartItems";
+import { getCartItems } from "../services/cart";
 
 const initialState = {
-  cartItems,
+  cartItems: [],
   amount: 4,
   total: 0,
   isLoading: true,
@@ -44,6 +45,18 @@ const cartSlide = createSlice({
       });
       state.amount = amount;
       state.total = total;
+    },
+  },
+  extraReducers: {
+    [getCartItems.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [getCartItems.fulfilled]: (state, action) => {
+      state.cartItems = action.payload;
+      state.isLoading = false;
+    },
+    [getCartItems.rejected]: (state) => {
+      state.isLoading = false;
     },
   },
 });
