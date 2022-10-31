@@ -29,4 +29,4 @@ const cartItems = [
   },
 ];
 
-export default cartItems;
+export { cartItems };
